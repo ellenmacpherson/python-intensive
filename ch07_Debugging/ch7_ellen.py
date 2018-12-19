@@ -5,7 +5,10 @@ Created on Tue Dec 11 15:44:08 2018
 
 @author: ellenmacpherson
 """
-#Code for debugging.
+####################################################
+############### Code for Debugging #################
+####################################################
+
 
 user_input = input('Please give a number: ')
 
@@ -22,6 +25,10 @@ def nestedOperation(result):
 result = simpleOperation(user_input)
 result2 = nestedOperation(result)
 print (result2)
+
+####################################################
+############### Notes to remember. #################
+####################################################
 
 
 """

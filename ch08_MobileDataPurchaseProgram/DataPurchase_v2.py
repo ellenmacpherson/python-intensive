@@ -9,11 +9,13 @@ from simpleBundlePurchase_v1 import checkPIN
 
 
 def multipleOfFive(amount):
-    return amount == int(amount / 5.0) * 5
+    return amount == int(amount / 5.0) * 5 #Checks to see if amount is a multiple of 5. Condensed if-else statement returning True.
 
 
-def topUp(balance):
-    maxTopUp = 150.00
+def topUp(balance): #Balance = money in user's account. topUp represents Pay as You Go.
+    maxTopUp = 150.00 #Sets maximum amount for top up
+
+    #Generates two integers from user input then compares them to double-check mobile number is correct
     print ("Please enter the mobile number of the phone you wish to top up: ")
     mobileNumber1 = input()
     print ("Please reconfirm the number you wish to top up: ")
@@ -23,33 +25,39 @@ def topUp(balance):
         print("Top up amount should be a multiple of £5.")
         amount = float(input("Please enter your top up amount: "))
 
+        # Refuses transaction if amount > 150.
         if amount > maxTopUp:
             print ("Amount exceeds the maximum top up amount of £150.")
             print ("Request refused.")
             return "top-up-request:refused"
 
+        # Refuses transaction if amount is higher than user balance
         elif amount > balance:
             print ("Amount exceeds available balance.")
             print ("Request refused.")
             return "top-up-request:refused"
 
+        # Authorises transaction. multipleOfFive returns True.
         elif multipleOfFive(amount):
             print ("Transaction authorised.")
             print ("Your new account balance is ", balance - amount, 'GBP')
             return ("top-up-request", amount)
 
+        # Refuses transaction. multipleOfFive returns False.
         else:
             print ("Top up amount is not a multiple of 5.")
             print ("Request refused.")
             return "top-up-request:refused"
 
+    #Cancels request because mobile numbers do not match.
     else:
         print ("Error: the two numbers you entered did not match.")
         print ("Transaction cancelled. Try again.")
         return "top-up-request:refused"
 
-def MonthlyPlan(balance):
+def MonthlyPlan(balance): #Monthly Plan options.
 
+    #Generates two integers from user input then compares them to double-check mobile number is correct
     print ("Please enter the mobile number of the phone you wish to top up: ")
     mobileNumber1 = input()
     if len(mobileNumber1) < 11:
@@ -63,36 +71,36 @@ def MonthlyPlan(balance):
             print("To purchase our £30 monthly plan with unlimited texts, minutes and data, enter 3.")
             planNumber = int(input("Please enter your choice: "))
 
-            if planNumber == 1:
+            if planNumber == 1: #15 monthly plan
                 confirm = input("You're purchasing our £15 monthly plan. Enter yes to confirm: ").lower()
                 if confirm == 'yes' and balance >= 15:
-                    print ("Thank you. Your remaining balance is", (balance - 15), ".")
+                    print ("Thank you. Your remaining balance is", (balance - 15), ".") # Subtracts plan price from balance if there is enough money in the account.
                     return balance - 15
-                if confirm == 'yes' and balance <= 15:
+                elif confirm == 'yes' and balance <= 15: #Refuses transaction as balance would be < zero.
                     print ("Balance too low. Request refused.")
                     return "plan:refused"
-                elif confirm == 'no':
+                elif confirm == 'no': # Allows for customer to change their mind
                     print ("Request cancelled.")
                     return "plan:cancelled"
 
-            elif planNumber == 2:
+            elif planNumber == 2: #20 monthly plan
                 confirm = input("You're purchasing our £20 monthly plan. Enter yes to confirm: ").lower()
                 if confirm == 'yes' and balance >= 20:
-                    print ("Thank you. Your remaining balance is", (balance - 20), ".")
+                    print ("Thank you. Your remaining balance is", (balance - 20), ".") # Subtracts plan price from balance if there is enough money in the account.
                     return balance - 20
-                if confirm == 'yes' and balance <= 20:
+                elif confirm == 'yes' and balance <= 20: #Refuses transaction as balance would be < zero.
                     print ("Balance too low. Request refused.")
                     return "plan:refused"
-                elif confirm == 'no':
+                elif confirm == 'no': # Allows for customer to change their mind
                     print ("Request cancelled.")
                     return "plan:cancelled"
 
-            elif planNumber == 3:
+            elif planNumber == 3: #30 monthly plan
                 confirm = input("You're purchasing our £30 monthly plan. Enter yes to confirm: ").lower()
                 if confirm == 'yes' and balance >= 30:
-                    print ("Thank you. Your remaining balance is", (balance - 30), ".")
+                    print ("Thank you. Your remaining balance is", (balance - 30), ".") # Subtracts plan price from balance if there is enough money in the account.
                     return balance - 30
-                if confirm == 'yes' and balance <= 30:
+                elif confirm == 'yes' and balance <= 30:
                     print ("Balance too low. Request refused.")
                     return "plan:refused"
                 elif confirm == 'no':
@@ -102,6 +110,9 @@ def MonthlyPlan(balance):
                     print ("Error")
             else:
                 print ("Plan code invalid. Please select option 1, 2, or 3.")
+                return 'Error'
+
+        #Cancels request because mobile numbers do not match.
         else:
             print ("Error. Please ensure the numbers match.")
     else:
@@ -121,10 +132,10 @@ def DataBundlePurchase(truepin, balance):
             print ("Thanks for using our service!")
             return "balance-request"
 
-        elif transactionChoice == 2:
+        elif transactionChoice == 2: #Updated from v1.
             return topUp(balance)
 
-        elif transactionChoice == 3:
+        elif transactionChoice == 3: #Updated from v1.
             return MonthlyPlan(balance)
 
         else:

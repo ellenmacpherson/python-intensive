@@ -20,7 +20,7 @@ class customer (object):
         else:
             self.balance -= amount
             return self.balance
-        
+
 
     def deposit (self, amount):
         #Returns the balance remaining when customer deposits amount.
@@ -68,7 +68,7 @@ class Cat(Animal):
       Animal.__init__(self)
     def meow(self):
         print('Meow!')
-        
+
 Snoopy = Dog('Snoopy', 7)
 
 print('-------Snoopy barking.---------\n')
@@ -89,14 +89,19 @@ class CookRobot(Robot):
     def cook(self):
         print ('My specialty is Italian food!')
 
+####################################################
+############# Association of classes ###############
+####################################################
+
+
 #Robot superclass using above main functions. Association.
 class SuperRobot():
-    
+
     def __init__(self,name,age):
         #This class contains 3 objects'
         self.name = name
         self.age = age
-        
+
         self.o1 = Robot()
         self.o2 = Dog(name, age)
         self.o3 = CleanRobot()
@@ -130,4 +135,3 @@ print('-------machineCook\'s specialty.---------\n')
 machineCook.cook()
 print('-------machineCook\'s name---------\n')
 print (machineCook.name, '\n')
-
