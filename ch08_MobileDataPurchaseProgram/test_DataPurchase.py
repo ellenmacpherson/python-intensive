@@ -6,7 +6,7 @@ Created on Tue Dec 11 16:40:42 2018
 @author: ellenmacpherson
 """
 
-from simpleBundlePurchase_v2 import DataBundlePurchase
+from DataPurchase_v2 import DataBundlePurchase
 
 # Test call to programme:
 print ('TEST EXAMPLE 1')
