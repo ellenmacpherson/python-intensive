@@ -17,7 +17,7 @@ if number > 10:
 if number <= 0:
     print ("Too low!")
 else:
-    print ("Great, thanks!")
+    print ("Great, thanks!") #This else statement will only catch the second if statement. We should use an elif statement instead. 
 
 #------------------------ ELIF statements ----------------------------
 
