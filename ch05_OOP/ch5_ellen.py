@@ -1,6 +1,7 @@
 
-
-#Task 1 - using classes
+####################################################
+######### Introduction to using classes ############
+####################################################
 
 class customer (object):
     # A customer of our bank with a checking account. The class 'customer' has the following list of attributes:
@@ -15,9 +16,11 @@ class customer (object):
     def withdraw(self, amount):
         #Returns the remaining balance after the amount in variable 'amount' is taken out.
         if amount > self.balance:
-            raise RuntimeError("Amount greater than available balance.") #Raises error so customer does not go < 0 dollars.
+            raise RuntimeError("Amount greater than available balance.") #Raises error so customer does not go below 0 dollars.
+        else:
             self.balance -= amount
             return self.balance
+        
 
     def deposit (self, amount):
         #Returns the balance remaining when customer deposits amount.
@@ -29,10 +32,13 @@ jason = customer('Jason Taylor', 1000.0)
 
 print (grace.balance)
 print (jason.balance)
+jason.withdraw(600)
+print (jason.balance)
 
 
-#----------------- Exploring inheritance in classes -------------------
-
+####################################################
+############# Inheritance of classes ###############
+####################################################
 
 
 # Creating an animal class and various subclasses
@@ -47,15 +53,20 @@ class Animal():
         print ('Food, please?')
 
 class Dog(Animal):
+    def __init__(self, name, age):
+      Animal.__init__(self, name, age)
     def bark(self):
         print('Woof!')
 
 class Cat(Animal):
+    def __init__(self, name, age):
+      Animal.__init__(self)
     def meow(self):
         print('Meow!')
+        
+Snoopy = Dog('Snoopy', 7)
+Snoopy.bark()
 
-pickles = Cat('Pickles', 3) #An instance of the cat subclass.
-pickles.meow() #subclass method. Will print 'Meow' to the console.
 
 #Creating a robot class and various subclasses
 
@@ -71,14 +82,16 @@ class CookRobot(Robot):
     def cook(self):
         print ('My specialty is Italian food!')
 
-
-
-
 #Robot superclass using above main functions. Association.
 class SuperRobot():
-    def __init__(self):
+    
+    def __init__(self,name,age):
+        #This class contains 3 objects'
+        self.name = name
+        self.age = age
+        
         self.o1 = Robot()
-        self.o2 = Dog()
+        self.o2 = Dog(name, age)
         self.o3 = CleanRobot()
         self.o4 = CookRobot()
 
@@ -101,8 +114,8 @@ class SuperRobot():
         return self.o4.cook()
 
 
+machineDog = SuperRobot('Socks', 3)
+machineDog.bark()
 
-robotDog = SuperRobot('Snoopy', 7)
-robotDog.move()
-robotDog.bark()
-robotDog.eat()
+robotCook = SuperRobot('Martha Stewart', 77)
+robotCook.cook()
