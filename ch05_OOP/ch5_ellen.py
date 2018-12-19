@@ -30,9 +30,14 @@ class customer (object):
 grace = customer('Grace Hopper', 3000.0)
 jason = customer('Jason Taylor', 1000.0)
 
+print('-------Grace\'s balance.---------\n')
 print (grace.balance)
+
+print('-------Jason\'s balance.---------\n')
 print (jason.balance)
 jason.withdraw(600)
+
+print('-------Jason\'s balance after withdrawal.---------\n')
 print (jason.balance)
 
 
@@ -65,6 +70,8 @@ class Cat(Animal):
         print('Meow!')
         
 Snoopy = Dog('Snoopy', 7)
+
+print('-------Snoopy barking.---------\n')
 Snoopy.bark()
 
 
@@ -115,7 +122,12 @@ class SuperRobot():
 
 
 machineDog = SuperRobot('Socks', 3)
+print('-------machineDog barking.---------\n')
 machineDog.bark()
 
-robotCook = SuperRobot('Martha Stewart', 77)
-robotCook.cook()
+machineCook = SuperRobot('Martha Stewart', 77)
+print('-------machineCook\'s specialty.---------\n')
+machineCook.cook()
+print('-------machineCook\'s name---------\n')
+print (machineCook.name, '\n')
+
