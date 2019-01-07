@@ -70,5 +70,6 @@ class Diamond(MovingShapes):
 class Circle(MovingShapes):
     def __init__(self, frame, diameter):
         MovingShapes.__init__(self, frame, 'circle', diameter)
+        print ('I am a bouncing circle. My area is {} sq units!'.format)
         
 
