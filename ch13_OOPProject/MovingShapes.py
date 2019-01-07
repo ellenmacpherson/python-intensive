@@ -34,6 +34,9 @@ class MovingShapes():
         self.y = self.miny + (r() * (self.maxy - self.miny))
         self.dx = 5 + 10 * r() #velocity
         self.dy = 5 + 10 * r() #velocity
+        if r() < 0.5: # Moving shapes in random positive and negative directions
+            self.dx = (self.dx * -1)
+            self.dy = (self.dy * -1)
         
     def goto(self, x, y):
         self.figure.goto(x, y)
@@ -44,32 +47,31 @@ class MovingShapes():
         self.goto(self.x, self.y)
         
 #If the shape hits the frame, move it away to a negative position on the relevant axis by multiplying the velocity value by -1.
-        if self.x >= self.maxx:
+        if (self.x >= self.maxx) or (self.x <= self.minx):
             self.dx = (self.dx * -1)
-        if self.y >= self.maxy:
+        if (self.y >= self.maxy) or (self.y <= self.miny):
             self.dy = (self.dy * -1)
-        if self.x <= self.minx:
-            self.dx = (self.dx * -1)
-        if self.y <= self.miny:
-            self.dy = (self.dy * -1)
-        
+
+################################################################################
+############################## MOVING SHAPES ###################################
+################################################################################
 
 class Square(MovingShapes):
     def __init__(self, frame, diameter):
         MovingShapes.__init__(self, frame, 'square', diameter) 
 
+
 class Diamond(MovingShapes):
     def __init__(self, frame, diameter):
         MovingShapes.__init__(self, frame, 'diamond', diameter)
-        #Overriding MovingShapes class values for diamond to avoid its shape overlapping hte border.
+        #Overriding MovingShapes class values for diamond to avoid its shape overlapping the border.
         self.maxx = frame.width - self.diameter
         self.maxy = frame.height - self.diameter
-        self.minx = self.diameter
-        self.miny = self.diameter
+        self.minx = 2 * (self.diameter/2)
+        self.miny = 2 * (self.diameter/2)
 
 class Circle(MovingShapes):
     def __init__(self, frame, diameter):
         MovingShapes.__init__(self, frame, 'circle', diameter)
-        print ('I am a bouncing circle. My area is {} sq units!'.format)
         
 

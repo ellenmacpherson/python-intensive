@@ -21,9 +21,3 @@ for i in range(100):
         shape.moveTick()
 
 frame.close()
-
-        
-        
-#
-# Hence, a call r() returns a random value between 0 and 1, with which you introduce variation into the movement vectors. Try typing r() into your console to see what it does .
-#As 10 has been a reasonable value for self.dx so far, you might now assign a value such as 5 + 10 * r(), which will be a random value between 5 and 15. Implement this idea for both the x and y velocity components. Run the test file several times to see the variations introduced .
